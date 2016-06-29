@@ -4,10 +4,12 @@ package com.codepath.apps.mysimpletweets.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
 //parse the json + store the data, encapsulate state logic or display logic
+@Parcel
 public class Tweet {
     //list out the attributes that we care about
     private String body;
@@ -31,6 +33,10 @@ public class Tweet {
 
     public User getUser() {
         return user;
+    }
+
+    public Tweet(){
+
     }
 
 

@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.codepath.apps.mysimpletweets.TwitterApplication;
-import com.codepath.apps.mysimpletweets.TwitterClient;
+import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -52,4 +52,9 @@ public class HomeTimelineFragment extends TweetsListFragment {
         });
     }
 
+    public void appendTweet(Tweet tweet){
+
+        addTweet(tweet);
+
+    }
 }

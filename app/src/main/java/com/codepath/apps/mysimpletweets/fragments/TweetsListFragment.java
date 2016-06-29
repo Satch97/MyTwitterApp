@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.codepath.apps.mysimpletweets.Adapters.TweetArrayAdapter;
 import com.codepath.apps.mysimpletweets.R;
-import com.codepath.apps.mysimpletweets.TweetArrayAdapter;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 
 import java.util.ArrayList;
@@ -32,6 +34,19 @@ public class TweetsListFragment extends Fragment {
         //Find the listview
         lvTweets= (ListView) v.findViewById(R.id.lvTweets);
         lvTweets.setAdapter(aTweets);
+        lvTweets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*User.user = tweets.get(position);
+                Intent i = new Intent(getContext(), ProfileActivity.class);
+                i.putExtra("title", movie.getTitle());
+                i.putExtra("overview", movie.getOverview());
+                i.putExtra("imageurl", movie.getBackdropUrl());
+                i.putExtra("rating", (int) movie.getRating());
+                startActivity(i);*/
+                Toast.makeText(getContext(),"Come on" , Toast.LENGTH_LONG).show();
+            }
+        });
         return v;
     }
 
@@ -49,4 +64,12 @@ public class TweetsListFragment extends Fragment {
     public void addAll(List<Tweet> tweets){
         aTweets.addAll(tweets);
     }
+
+    public void addTweet(Tweet tweet){
+        tweets.add(0,tweet);
+        aTweets.notifyDataSetChanged();
+        lvTweets.setSelection(0);
+    }
+
+
 }

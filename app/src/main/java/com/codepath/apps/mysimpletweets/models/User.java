@@ -2,11 +2,17 @@ package com.codepath.apps.mysimpletweets.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /**
  * Created by satchinc on 6/27/16.
  */
+@Parcel
 public class User {
+
+    public User(){
+
+    }
     public String getName() {
         return name;
     }
