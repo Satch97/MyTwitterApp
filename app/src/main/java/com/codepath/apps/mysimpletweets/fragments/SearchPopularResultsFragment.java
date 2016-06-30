@@ -3,6 +3,7 @@ package com.codepath.apps.mysimpletweets.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.apps.mysimpletweets.TwitterApplication;
@@ -10,22 +11,17 @@ import com.codepath.apps.mysimpletweets.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-
-public class UserTimelineFragment extends TweetsListFragment {
-
+/**
+ * Created by satchinc on 6/27/16.
+ */
+public class SearchPopularResultsFragment extends TweetsListFragment {
     private TwitterClient client;
-
-    public static UserTimelineFragment newInstance(String screen_name) {
-        UserTimelineFragment userFragment = new UserTimelineFragment();
-        Bundle args = new Bundle();
-        args.putString("screen_name", screen_name);
-        userFragment.setArguments(args);
-        return userFragment;
-    }
+    String query = "warriors";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,19 +31,24 @@ public class UserTimelineFragment extends TweetsListFragment {
     }
 
     private void populateTimeline() {
-        String screenName = getArguments().getString("screen_name");
-        client.getUserTimeline(screenName, new JsonHttpResponseHandler(){
+        client.getPopularSearchResults(query, new JsonHttpResponseHandler(){
             //SUCCESS
-
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
 
                 //JSON here
                 //deserialize json
                 //create models
                 //load the model data into list view
 
-                addAll(Tweet.fromJSONArray(json));
+                try {
+                    JSONArray array = json.getJSONArray("statuses");
+                    addAll(Tweet.fromJSONArray(array));
+                    notifyChanges();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
             }
 
@@ -60,21 +61,31 @@ public class UserTimelineFragment extends TweetsListFragment {
         });
     }
 
-    public void onRefresh() {
-        String screenName = getArguments().getString("screen_name");
-        client.getUserTimeline(screenName, new JsonHttpResponseHandler(){
-            //SUCCESS
+    public void appendTweet(Tweet tweet){
 
+        addTweet(tweet);
+
+    }
+    @Override
+    public void onRefresh() {
+        Toast.makeText(getContext(),"Refreshing", Toast.LENGTH_LONG).show();
+        client.getSearchResults(query, new JsonHttpResponseHandler(){
+            //SUCCESS
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
 
                 //JSON here
                 //deserialize json
                 //create models
                 //load the model data into list view
                 clearOld();
-                addAll(Tweet.fromJSONArray(json));
-                notifyChanges();
+                try {
+                    JSONArray array = json.getJSONArray("statuses");
+                    addAll(Tweet.fromJSONArray(array));
+                    notifyChanges();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 swipeLayout.setRefreshing(false);
 
             }
@@ -86,7 +97,6 @@ public class UserTimelineFragment extends TweetsListFragment {
 
             //FAILURE
         });
-
 
 
     }

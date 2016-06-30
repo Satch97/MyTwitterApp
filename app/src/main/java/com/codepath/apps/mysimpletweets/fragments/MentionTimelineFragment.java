@@ -52,4 +52,34 @@ public class MentionTimelineFragment extends TweetsListFragment {
             //FAILURE
         });
     }
+
+    @Override
+    public void onRefresh() {
+        client.getMentionsTimeLine(new JsonHttpResponseHandler(){
+            //SUCCESS
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+
+                //JSON here
+                //deserialize json
+                //create models
+                //load the model data into list view
+
+                clearOld();
+                addAll(Tweet.fromJSONArray(json));
+                notifyChanges();
+                swipeLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("Debug", errorResponse.toString());
+            }
+
+            //FAILURE
+        });
+    }
+
+
 }

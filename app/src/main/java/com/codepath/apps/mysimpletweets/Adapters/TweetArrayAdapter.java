@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.mysimpletweets.Activities.ProfileActivity;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
-import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -58,7 +58,10 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
         //4. Populate data into the subviews
         tvUserName.setText(tweet.getUser().getScreenName());
         tvBody.setText(tweet.getBody());
-        Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImage);
+        Glide.with(getContext())
+               .load(tweet.getUser().getProfileImageUrl()).crossFade(400)
+               .into(ivProfileImage);
+     //  Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImage);
         return convertView;
     }
 }

@@ -51,7 +51,11 @@
             android:name=".Activities.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.ComposeActivity"></activity>
+        <activity
+            android:name=".Activities.ComposeActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".Activities.SplashActivity" />
+        <activity android:name=".Activities.SearchActivity"></activity>
     </application>
 
 </manifest>

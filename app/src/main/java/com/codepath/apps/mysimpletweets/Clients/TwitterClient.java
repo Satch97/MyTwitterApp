@@ -1,6 +1,7 @@
 package com.codepath.apps.mysimpletweets.Clients;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -24,24 +25,20 @@ import org.scribe.builder.api.TwitterApi;
  */
 public class TwitterClient extends OAuthBaseClient {
 	public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
-	public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
+	public static final String REST_URL = "https://api.twitter.com/1.1/"; // Change this, base API URL
 	public static final String REST_CONSUMER_KEY = "18riuDJzdhIjI9PRUiGviWgDg";       // Change this
 	public static final String REST_CONSUMER_SECRET = "p8Q5jiRMrqc583VswWHThqOo3y7SvMIDzEKsHleQtFEDtkAJru"; // Change this
 	public static final String REST_CALLBACK_URL = "oauth://cpsimpletweets"; // Change this (here and in manifest)
+	private SwipeRefreshLayout swipeContainer = null;
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
 	}
 
-	// CHANGE THIS
-	// DEFINE METHODS for different API endpoints here
-	public void getInterestingnessList(AsyncHttpResponseHandler handler) {
-		String apiUrl = getApiUrl("?nojsoncallback=1&method=flickr.interestingness.getList");
-		// Can specify query string params directly or through RequestParams.
-		RequestParams params = new RequestParams();
-		params.put("format", "json");
-		client.get(apiUrl, params, handler);
-	}
+
+
+
+
 
 	//Method === ENDPOINT
 
@@ -61,14 +58,14 @@ public class TwitterClient extends OAuthBaseClient {
 	public void getMentionsTimeLine(JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/mentions_timeline.json");
 		RequestParams params = new RequestParams();
-		params.put("count", 25);
+		params.put("count", 5);
 		//execute request
 		getClient().get(apiUrl,params,handler);
 	}
 	public void getUserTimeline (String screenName, AsyncHttpResponseHandler handler){
 		String apiUrl = getApiUrl("statuses/user_timeline.json");
 		RequestParams params = new RequestParams();
-		params.put("count", 25);
+		params.put("count", 5);
 		params.put("screen_name", screenName); //declare screenName as string parameter
 		getClient().get(apiUrl,params,handler);
 	}
@@ -83,6 +80,23 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("status", tweet);
 		getClient().post(apiUrl, params, handler);
+	}
+
+	public void getSearchResults(String query, AsyncHttpResponseHandler handler){
+		String apiUrl = getApiUrl("search/tweets.json");
+		RequestParams params = new RequestParams();
+		params.put("count", 5);
+		params.put("q", query);
+		getClient().get(apiUrl, params, handler);
+	}
+
+	public void getPopularSearchResults(String query, JsonHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("search/tweets.json");
+		RequestParams params = new RequestParams();
+		params.put("count", 5);
+		params.put("q", query);
+		params.put("result_type", "popular");
+		getClient().get(apiUrl, params, handler);
 	}
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
 	 * 	  i.e getApiUrl("statuses/home_timeline.json");

@@ -3,6 +3,7 @@ package com.codepath.apps.mysimpletweets.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweets.TwitterApplication;
 import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
@@ -30,7 +31,6 @@ public class HomeTimelineFragment extends TweetsListFragment {
     private void populateTimeline() {
         client.getHomeTimeLine(new JsonHttpResponseHandler(){
             //SUCCESS
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
 
@@ -38,7 +38,6 @@ public class HomeTimelineFragment extends TweetsListFragment {
                 //deserialize json
                 //create models
                 //load the model data into list view
-
                 addAll(Tweet.fromJSONArray(json));
 
             }
@@ -55,6 +54,35 @@ public class HomeTimelineFragment extends TweetsListFragment {
     public void appendTweet(Tweet tweet){
 
         addTweet(tweet);
+
+    }
+    @Override
+    public void onRefresh() {
+        Toast.makeText(getContext(),"Refreshing", Toast.LENGTH_LONG).show();
+        client.getHomeTimeLine(new JsonHttpResponseHandler(){
+            //SUCCESS
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+
+                //JSON here
+                //deserialize json
+                //create models
+                //load the model data into list view
+                clearOld();
+                addAll(Tweet.fromJSONArray(json));
+                notifyChanges();
+                swipeLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("Debug", errorResponse.toString());
+            }
+
+            //FAILURE
+        });
+
 
     }
 }

@@ -29,4 +29,14 @@
         android:layout_alignRight="@id/etTweet"
         android:layout_alignEnd="@id/etTweet"
         android:onClick="onSubmitTweet"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="140"
+        android:id="@+id/tvCount"
+        android:layout_alignBottom="@+id/btnTweet"
+        android:layout_toLeftOf="@+id/btnTweet"
+        android:layout_toStartOf="@+id/btnTweet"
+        android:padding="10dp"/>
 </RelativeLayout>

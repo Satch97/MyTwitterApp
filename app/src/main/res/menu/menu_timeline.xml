@@ -16,6 +16,12 @@
         android:icon="@mipmap/ic_compose"
         app:showAsAction="ifRoom"
         android:onClick="onComposeNewTweet"></item>
+    <item android:id="@+id/action_search"
+        android:orderInCategory="200"
+        android:title="Search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 
 
 </menu>
