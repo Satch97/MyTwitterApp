@@ -1,8 +1,6 @@
 package com.codepath.apps.mysimpletweets.models;
 
 
-import com.codepath.apps.mysimpletweets.TimeFormatter;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +64,7 @@ public class Tweet {
         try {
             tweet.body = jsonObject.getString("text");
             tweet.uid = jsonObject.getLong("id");
-            tweet.createdAt=jsonObject.getString("created_at");
+            tweet.createdAt = jsonObject.getString("created_at");
             tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
             tweet.likes= jsonObject.getInt("favorite_count");
             tweet.retweets = jsonObject.getInt("retweet_count");
@@ -77,8 +75,7 @@ public class Tweet {
                     tweet.mediaImageUrl = media.getJSONObject(0).getString("media_url");
                 }
             }
-            String time = jsonObject.getString("created_at");
-            tweet.createdAt = TimeFormatter.getTimeStamp(time);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

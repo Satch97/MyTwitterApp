@@ -172,10 +172,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="0m"
         android:id="@+id/tvTimeStamp"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_alignTop="@+id/barrier"
+        android:layout_alignLeft="@+id/barrier"
+        android:layout_alignStart="@+id/barrier" />
 
 
 </RelativeLayout>

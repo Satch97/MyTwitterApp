@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.mysimpletweets.R;
+import com.codepath.apps.mysimpletweets.TimeFormatter;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 
 import org.parceler.Parcels;
@@ -34,7 +35,7 @@ public class TweetDetailActivity extends AppCompatActivity {
         TextView tvRetweets = (TextView) findViewById(R.id.tvRetweet);
         ImageView ivContent = (ImageView) findViewById(R.id.ivContent);
         TextView tvTimeStamp = (TextView) findViewById(R.id.tvTimeStamp);
-        tvTimeStamp.setText(tweet.getCreatedAt());
+        tvTimeStamp.setText(TimeFormatter.getTimeStamp(tweet.getCreatedAt()));
         tvName.setText(tweet.getUser().getName());
         tvHandle.setText(tweet.getUser().getScreenName());
         Glide.with(this)

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.mysimpletweets.Activities.ProfileActivity;
 import com.codepath.apps.mysimpletweets.Activities.TweetDetailActivity;
 import com.codepath.apps.mysimpletweets.R;
+import com.codepath.apps.mysimpletweets.TimeFormatter;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 
 import org.parceler.Parcels;
@@ -59,7 +60,9 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
         final TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
+        TextView tvTimeDifference = (TextView) convertView.findViewById(R.id.tvTimeDifference);
         //4. Populate data into the subviews
+        tvTimeDifference.setText(TimeFormatter.getTimeDifference(tweet.getCreatedAt()));
         tvUserName.setText(tweet.getUser().getName());
         tvBody.setText(tweet.getBody());
         tvHandle.setText(tweet.getUser().getScreenName()) ;

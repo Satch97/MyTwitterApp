@@ -8,14 +8,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Activities.LoginActivity"
     android:background="@drawable/login_background">
-   
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_white_twitter_icon"
+        android:layout_marginBottom="113dp"
+        android:layout_above="@+id/tvHeader2"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get real-time updates about what matters to you "
+        android:id="@+id/tvHeader1"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="146dp"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:paddingTop="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome To Twitter"
+        android:id="@+id/tvHeader2"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:layout_above="@+id/tvHeader1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
         android:onClick="loginToRest"
-        android:text="@string/login_label" />
+        android:text="@string/login_label"
+        android:id="@+id/button"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>
