@@ -28,7 +28,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@id/etTweet"
         android:layout_alignEnd="@id/etTweet"
-        android:onClick="onSubmitTweet"/>
+        android:radius="10dp"
+        android:onClick="onSubmitTweet"
+        android:background="@color/twitter_blue"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,5 +40,7 @@
         android:layout_alignBottom="@+id/btnTweet"
         android:layout_toLeftOf="@+id/btnTweet"
         android:layout_toStartOf="@+id/btnTweet"
-        android:padding="10dp"/>
+        android:padding="10dp"
+
+    />
 </RelativeLayout>

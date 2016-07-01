@@ -1,7 +1,10 @@
 package com.codepath.apps.mysimpletweets.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.mysimpletweets.Activities.ProfileActivity;
+import com.codepath.apps.mysimpletweets.Activities.TweetDetailActivity;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
 
@@ -41,7 +45,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tweet,parent,false);
         }
         //3. Find the subviews to fill with data in the template
-        ImageView ivProfileImage = (ImageView) convertView.findViewById(R.id.ivProfileImage);
+        final ImageView ivProfileImage = (ImageView) convertView.findViewById(R.id.ivProfileImage);
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -54,7 +58,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
         });
         TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
-        TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
+        final TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         //4. Populate data into the subviews
         tvUserName.setText(tweet.getUser().getName());
         tvBody.setText(tweet.getBody());
@@ -63,6 +67,24 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
                .load(tweet.getUser().getProfileImageUrl()).crossFade(400)
                .into(ivProfileImage);
      //  Picasso.with(getContext()).load(tweet.getUser().getProfileImageUrl()).into(ivProfileImage);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(myContext, TweetDetailActivity.class);
+
+                i.putExtra("tweet", Parcels.wrap(tweet));
+                Pair<View, String> p1 = Pair.create((View)ivProfileImage, "userImage");
+                //Pair<View, String> p2 = Pair.create(vPalette, "palette");
+                //Pair<View, String> p2 = Pair.create((View)tvBody, "tweetText");
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) myContext, p1);
+                myContext.startActivity(i, options.toBundle());
+                Toast.makeText(getContext(), "Come on", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+
         return convertView;
     }
 }

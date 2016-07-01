@@ -7,19 +7,19 @@
         android:id="@+id/miProfile"
         android:orderInCategory="100"
         android:title="Profile"
-        android:icon="@mipmap/ic_profile"
+        android:icon="@drawable/profile_svg"
         app:showAsAction="ifRoom"
         android:onClick="onProfileView"/>
     <item
         android:id="@+id/miCompose"
         android:title="Compose"
-        android:icon="@mipmap/ic_compose"
+        android:icon="@drawable/compose_svg"
         app:showAsAction="ifRoom"
         android:onClick="onComposeNewTweet"></item>
     <item android:id="@+id/action_search"
         android:orderInCategory="200"
         android:title="Search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/search_svg"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 

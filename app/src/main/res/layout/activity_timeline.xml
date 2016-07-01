@@ -23,6 +23,9 @@
         android:layout_below="@id/toolbar"
         app:pstsTextAllCaps="true"
         android:layout_width="match_parent"
+        app:pstsUnderlineColor="@color/white"
+        app:pstsIndicatorColor="@color/twitter_blue"
+        app:pstsIndicatorHeight="3dp"
         android:layout_height="48dp" />
 
     <android.support.v4.view.ViewPager

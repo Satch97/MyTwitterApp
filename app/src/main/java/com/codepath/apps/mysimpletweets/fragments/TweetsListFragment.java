@@ -1,6 +1,5 @@
 package com.codepath.apps.mysimpletweets.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,16 +7,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.codepath.apps.mysimpletweets.Activities.TweetDetailActivity;
 import com.codepath.apps.mysimpletweets.Adapters.TweetArrayAdapter;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
-
-import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,17 +48,23 @@ public class TweetsListFragment extends Fragment implements SwipeRefreshLayout.O
         //Find the listview
         lvTweets= (ListView) view.findViewById(R.id.lvTweets);
         lvTweets.setAdapter(aTweets);
-        lvTweets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*lvTweets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Tweet thisTweet = tweets.get(position);
 
                 Intent i = new Intent(getContext(), TweetDetailActivity.class);
+
                 i.putExtra("tweet", Parcels.wrap(thisTweet));
+                Pair<View, String> p1 = Pair.create((View)ivProfile, "profile");
+                Pair<View, String> p2 = Pair.create(vPalette, "palette");
+                Pair<View, String> p3 = Pair.create((View)tvName, "text");
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(this, (View)ivProfile, "profile");
                 startActivity(i);
                 Toast.makeText(getContext(),"Come on" , Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 
     @Override
