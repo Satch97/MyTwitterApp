@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.codepath.apps.mysimpletweets.Activities.TweetDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/twitter_blue">
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/ivProfileImage"
+
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="3dp"
+        android:contentDescription="image"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="eijrbgpsjheuhlbtcfubuhvuiggjdlkgrbhikvchgbpsjdfib fkdsjb [sdkjbsd[pijdsnbdos[fbsjk[dfbkpj[df b[kjsdfbk[js dfjkb sdfkjbjksdfbfd"
+        android:id="@+id/tvBody"
+        android:maxLines="5"
+        android:gravity="left"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:lineSpacingExtra="1dp"
+        android:textSize="16sp"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bill Gates"
+        android:id="@+id/tvScreenName"
+        android:textSize="20sp"
+        android:layout_below="@+id/toolbar"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:paddingTop="4dp"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bill Gates"
+        android:textSize="20sp"
+
+        android:id="@+id/tvHandle"
+        android:layout_below="@+id/tvScreenName"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:paddingTop="0dp"
+        android:paddingBottom="4dp"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey2"
+        android:layout_below="@+id/ivContent"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="15dp"
+        android:id="@+id/view" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="5dp"
+        android:id="@+id/linearLayout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="233"
+            android:id="@+id/tvRetweet"
+            android:paddingLeft="5dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RETWEETS"
+            android:id="@+id/tvRetweetTitle"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3423"
+            android:id="@+id/tvLikes"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIKES"
+            android:id="@+id/tvLikesTitle"
+            android:paddingRight="5dp"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey2"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/barrier"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:id="@+id/ivContent"
+        android:layout_below="@id/tvBody"
+        android:padding="5dp"
+       />
+
+
+</RelativeLayout>

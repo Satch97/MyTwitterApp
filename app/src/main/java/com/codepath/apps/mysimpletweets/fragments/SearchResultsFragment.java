@@ -21,18 +21,26 @@ import cz.msebera.android.httpclient.Header;
  */
 public class SearchResultsFragment extends TweetsListFragment {
     private TwitterClient client;
-    String query = "warriors";
+    private String query = "";
+
+    public static SearchResultsFragment newInstance(String query){
+        SearchResultsFragment fragment = new SearchResultsFragment();
+
+            Bundle args = new Bundle();
+            args.putString("searchQuery", query);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         client = TwitterApplication.getRestClient();
+
+        query = getArguments().getString("searchQuery", "");
         populateTimeline();
     }
-    public void getQuery(String passedQuery) {
-        this.query=passedQuery;
-    }
-
     private void populateTimeline() {
         client.getSearchResults(query, new JsonHttpResponseHandler(){
             //SUCCESS
@@ -84,6 +92,7 @@ public class SearchResultsFragment extends TweetsListFragment {
                 //clearOld();
                 try {
                     JSONArray array = json.getJSONArray("statuses");
+                    clearOld();
                     addAll(Tweet.fromJSONArray(array));
                     notifyChanges();
                 } catch (JSONException e) {

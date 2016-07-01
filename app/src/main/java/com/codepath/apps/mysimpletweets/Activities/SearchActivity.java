@@ -3,6 +3,7 @@ package com.codepath.apps.mysimpletweets.Activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -22,12 +23,13 @@ public class SearchActivity extends TimelineActivity {
         setContentView(R.layout.activity_search);
         searchPopularResultsFragment = new SearchPopularResultsFragment();
         searchResultsFragment = new SearchResultsFragment();
-
-        //PASSING QUERY THROUGH
-
-       /* SearchResultsFragment fragmentDemo = (SearchResultsFragment)
-                getSupportFragmentManager().findFragmentById(R.id.);
-        fragmentDemo.getQuery("some param");*/
+        String query = getIntent().getStringExtra("query");
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        searchResultsFragment = SearchResultsFragment.newInstance(query);
+        ft.commit();
+        FragmentTransaction ftPop = getSupportFragmentManager().beginTransaction();
+        searchPopularResultsFragment = SearchPopularResultsFragment.newInstance(query);
+        ftPop.commit();
         ViewPager vpPager = (ViewPager) findViewById(R.id.searchViewpager);
         pagerAdapter = new SearchTweetsPagerAdapter(getSupportFragmentManager());
         //set the viewpager adapter for the pager

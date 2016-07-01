@@ -61,8 +61,11 @@ public class User {
         try {
             u.name=json.getString("name");
             u.uid= json.getLong("id");
-            u.screenName = json.getString("screen_name");
-            u.profileImageUrl = json.getString("profile_image_url");
+            u.screenName = "@" + json.getString("screen_name");
+           // u.profileImageUrl = json.getString("profile_image_url");
+            String originalProfImgUrl = json.getString("profile_image_url");
+            u.profileImageUrl = originalProfImgUrl.replaceAll("_normal","");
+
             u.followersCount = json.getString("followers_count");
             u.followingCount = json.getString("following");
             u.description= json.getString("description");

@@ -3,14 +3,14 @@ package com.codepath.apps.mysimpletweets.Activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.TwitterApplication;
-import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.apps.mysimpletweets.fragments.UserTimelineFragment;
 import com.codepath.apps.mysimpletweets.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -29,6 +29,10 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
        //user = getIntent().get
         user = (User) Parcels.unwrap(getIntent().getParcelableExtra("user"));
         if(user== null){
@@ -74,12 +78,11 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvUserName = (TextView) findViewById(R.id.tvScreenName);
         TextView tvDescription = (TextView) findViewById(R.id.tvDescription);
         ImageView ivProfilePic = (ImageView) findViewById(R.id.ivProfileImage);
-        Toast.makeText(this,"Reaches the populateProfileHeader", Toast.LENGTH_LONG).show();
         tvFollowers.setText(user.getFollowersCount());
         tvFollowing.setText(user.getFollowingCount());
         tvDescription.setText(user.getDescription());
        tvUserName.setText(user.getName());
-       tvHandle.setText("@" + user.getScreenName());
+       tvHandle.setText(user.getScreenName());
        Picasso.with(getApplicationContext()).load(user.getProfileImageUrl()).into(ivProfilePic);
     }
 

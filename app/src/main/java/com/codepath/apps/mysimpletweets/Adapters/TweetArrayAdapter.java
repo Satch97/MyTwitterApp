@@ -52,12 +52,13 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
                 myContext.startActivity(i);
             }
         });
-
+        TextView tvHandle = (TextView) convertView.findViewById(R.id.tvHandle);
         TextView tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
         TextView tvBody = (TextView) convertView.findViewById(R.id.tvBody);
         //4. Populate data into the subviews
-        tvUserName.setText(tweet.getUser().getScreenName());
+        tvUserName.setText(tweet.getUser().getName());
         tvBody.setText(tweet.getBody());
+        tvHandle.setText(tweet.getUser().getScreenName()) ;
         Glide.with(getContext())
                .load(tweet.getUser().getProfileImageUrl()).crossFade(400)
                .into(ivProfileImage);

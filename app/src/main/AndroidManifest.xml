@@ -55,7 +55,8 @@
             android:name=".Activities.ComposeActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".Activities.SplashActivity" />
-        <activity android:name=".Activities.SearchActivity"></activity>
+        <activity android:name=".Activities.SearchActivity" />
+        <activity android:name=".Activities.TweetDetailActivity"></activity>
     </application>
 
 </manifest>

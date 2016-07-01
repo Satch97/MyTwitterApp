@@ -7,9 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TimelineActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/twitter_blue">
+    </android.support.v7.widget.Toolbar>
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         app:pstsShouldExpand="true"
+        android:layout_below="@id/toolbar"
         app:pstsTextAllCaps="true"
         android:layout_width="match_parent"
         android:layout_height="48dp" />

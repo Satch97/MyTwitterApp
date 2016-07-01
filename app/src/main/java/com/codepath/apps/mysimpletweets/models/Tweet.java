@@ -16,6 +16,22 @@ public class Tweet {
     private long uid;
     private User user;
     private String createdAt;
+    private String mediaImageUrl = null;
+
+    public String getMediaImageUrl() {
+        return mediaImageUrl;
+    }
+
+    public int getRetweets() {
+        return retweets;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    private int retweets;
+    private int likes;
 
     public long getUid() {
         return uid;
@@ -50,6 +66,15 @@ public class Tweet {
             tweet.uid = jsonObject.getLong("id");
             tweet.createdAt=jsonObject.getString("created_at");
             tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+            tweet.likes= jsonObject.getInt("favorite_count");
+            tweet.retweets = jsonObject.getInt("retweet_count");
+            if(jsonObject.getJSONObject("entities") != null) {
+                JSONObject entities = jsonObject.getJSONObject("entities");
+                JSONArray media = entities.getJSONArray("media");
+                if(media.length()>0) {
+                    tweet.mediaImageUrl = media.getJSONObject(0).getString("media_url");
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

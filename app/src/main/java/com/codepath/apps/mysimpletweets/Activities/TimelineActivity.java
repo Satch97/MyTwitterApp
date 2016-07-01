@@ -8,6 +8,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -36,6 +37,12 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+
         homeTimelineFragment = new HomeTimelineFragment();
         mentionTimelineFragment = new MentionTimelineFragment();
         //Get the viewpager
@@ -60,6 +67,7 @@ public class TimelineActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(getApplicationContext(), "Search Query Submitted", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(TimelineActivity.this, SearchActivity.class);
+                i.putExtra("query", query);
                 startActivity(i);
                 searchView.clearFocus();
 
