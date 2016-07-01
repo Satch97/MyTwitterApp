@@ -4,22 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.codepath.apps.mysimpletweets.Activities.SearchActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/twitter_blue">
+    </android.support.v7.widget.Toolbar>
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/searchTabs"
         app:pstsShouldExpand="true"
+        android:layout_below="@id/toolbar"
         app:pstsTextAllCaps="true"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/twitter_blue"/>
 
     <android.support.v4.view.ViewPager
         android:layout_below="@id/searchTabs"
         android:id="@+id/searchViewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"
+        app:pstsUnderlineColor="@color/white"
+        app:pstsIndicatorColor="@color/twitter_blue"
+        app:pstsIndicatorHeight="3dp"/>
 </RelativeLayout>

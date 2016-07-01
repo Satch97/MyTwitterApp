@@ -1,6 +1,8 @@
 package com.codepath.apps.mysimpletweets.models;
 
 
+import com.codepath.apps.mysimpletweets.TimeFormatter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,6 +77,8 @@ public class Tweet {
                     tweet.mediaImageUrl = media.getJSONObject(0).getString("media_url");
                 }
             }
+            String time = jsonObject.getString("created_at");
+            tweet.createdAt = TimeFormatter.getTimeStamp(time);
         } catch (JSONException e) {
             e.printStackTrace();
         }
