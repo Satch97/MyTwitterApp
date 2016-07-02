@@ -51,9 +51,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://recordit.co/y2YBmRCory' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src='http://recordit.co/uGAN97RGbn' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src='http://recordit.co/QUm8aK5RpH' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/y2YBmRCory.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/uGAN97RGbn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/QUm8aK5RpH.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [RecordIt](http://recordit.co/).
 
