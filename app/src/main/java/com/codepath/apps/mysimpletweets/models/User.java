@@ -67,7 +67,7 @@ public class User {
             u.profileImageUrl = originalProfImgUrl.replaceAll("_normal","");
 
             u.followersCount = json.getString("followers_count");
-            u.followingCount = json.getString("following");
+            u.followingCount = json.getString("friends_count");
             u.description= json.getString("description");
 
 
