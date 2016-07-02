@@ -31,6 +31,11 @@ public class Tweet {
     }
 
     private int retweets;
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
     private int likes;
 
     public long getUid() {

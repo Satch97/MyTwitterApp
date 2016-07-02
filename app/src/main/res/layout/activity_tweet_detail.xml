@@ -45,7 +45,8 @@
         android:textSize="16sp"
         android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -176,6 +177,43 @@
         android:layout_alignTop="@+id/barrier"
         android:layout_alignLeft="@+id/barrier"
         android:layout_alignStart="@+id/barrier" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tvTimeStamp"
+
+
+        android:id="@+id/linearLayout3">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_reply"
+            android:src="@mipmap/ic_reply"
+            android:scaleY="0.7"
+            android:scaleX="0.7"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_retweet"
+            android:id="@+id/ivRetweet"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ivLike"
+            android:src="@mipmap/ic_heart"
+            android:scaleY="0.7"
+            android:scaleX="0.7"/>
+
+
+    </LinearLayout>
+
+
 
 
 </RelativeLayout>

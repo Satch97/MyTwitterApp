@@ -77,19 +77,11 @@
         android:padding="4dp"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/tvBody"
-        android:layout_alignEnd="@+id/tvBody" />
+        android:layout_alignEnd="@+id/tvBody" /><![CDATA[
 
     />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey2"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
-        android:id="@+id/barrier"
-        android:layout_below="@id/tvBody" />
+
+    ]]>
 
     <LinearLayout
         android:orientation="horizontal"

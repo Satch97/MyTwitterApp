@@ -81,6 +81,12 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("status", tweet);
 		getClient().post(apiUrl, params, handler);
 	}
+	public void postReplyTweet(String tweet, AsyncHttpResponseHandler handler){
+		String apiUrl = getApiUrl("statuses/update.json");
+		RequestParams params = new RequestParams();
+		params.put("status", tweet);
+		getClient().post(apiUrl, params, handler);
+	}
 
 	public void getSearchResults(String query, AsyncHttpResponseHandler handler){
 		String apiUrl = getApiUrl("search/tweets.json");
@@ -98,9 +104,33 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("result_type", "popular");
 		getClient().get(apiUrl, params, handler);
 	}
+	public void postLike(long id, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("favorites/create.json");
+		RequestParams params =  new RequestParams();
+		params.put ("id", Long.toString(id) );
+		getClient().post(apiUrl, params, handler);
+	}
+	public void destroyLike(long id, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("favorites/destroy.json");
+		RequestParams params =  new RequestParams();
+		params.put ("id", Long.toString(id) );
+		getClient().post(apiUrl, params, handler);
+	}
+
+
+	public void retweetTweet(long id,JsonHttpResponseHandler handler){
+		String apiUrl= getApiUrl("statuses/retweet/" + Long.toString(id) + ".json");
+		getClient().post(apiUrl, null , handler);
+		//https://api.twitter.com/1.1/  statuses/retweet/241259202004267009.json
+	}
+	public void unretweetTweet(long id,JsonHttpResponseHandler handler){
+		String apiUrl= getApiUrl("statuses/unretweet/" + Long.toString(id) + ".json");
+		getClient().post(apiUrl, null , handler);
+		//https://api.twitter.com/1.1/  statuses/retweet/241259202004267009.json
+	}
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
 	 * 	  i.e getApiUrl("statuses/home_timeline.json");
-	 * 2. Define the parameters to pass to the request (query or body)
+	 * 2. Defin the parameters to pass to the request (query or body)
 	 *    i.e RequestParams params = new RequestParams("foo", "bar");
 	 * 3. Define the request method and make a call to the client
 	 *    i.e client.get(apiUrl, params, handler);

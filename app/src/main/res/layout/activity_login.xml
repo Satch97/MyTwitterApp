@@ -54,6 +54,7 @@
         android:layout_marginBottom="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/loginbuttoncolor"
         android:background="@android:color/transparent"/>
 
 </RelativeLayout>
