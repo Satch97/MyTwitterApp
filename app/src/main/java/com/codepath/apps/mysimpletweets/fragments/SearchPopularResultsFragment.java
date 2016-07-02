@@ -78,7 +78,7 @@ public class SearchPopularResultsFragment extends TweetsListFragment {
     @Override
     public void onRefresh() {
         Toast.makeText(getContext(),"Refreshing", Toast.LENGTH_LONG).show();
-        client.getSearchResults(query, new JsonHttpResponseHandler(){
+        client.getPopularSearchResults(query, new JsonHttpResponseHandler(){
             //SUCCESS
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {

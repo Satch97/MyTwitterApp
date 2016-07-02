@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.mysimpletweets.R;
@@ -21,9 +22,15 @@ public class SearchActivity extends TimelineActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+
         searchPopularResultsFragment = new SearchPopularResultsFragment();
         searchResultsFragment = new SearchResultsFragment();
         String query = getIntent().getStringExtra("query");
+        getSupportActionBar().setTitle(query);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         searchResultsFragment = SearchResultsFragment.newInstance(query);
         ft.commit();
