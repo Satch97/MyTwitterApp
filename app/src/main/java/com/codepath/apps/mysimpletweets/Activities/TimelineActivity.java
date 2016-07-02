@@ -97,6 +97,9 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void onComposeNewTweet(MenuItem item) {
         Intent i = new Intent(this, ComposeActivity.class);
+        Tweet nullTweet = null;
+
+        i.putExtra("tweet", Parcels.wrap(nullTweet));
         startActivityForResult(i, REQUEST_CODE);
     }
     //send api request to get the timeline json

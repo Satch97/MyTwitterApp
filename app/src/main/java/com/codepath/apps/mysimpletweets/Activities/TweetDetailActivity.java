@@ -58,6 +58,7 @@ public class TweetDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), ComposeActivity.class);
                 i.putExtra("tweet",Parcels.wrap(tweet));
+                startActivity(i);
 
 
 

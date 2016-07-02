@@ -82,7 +82,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
                 //Pair<View, String> p2 = Pair.create((View)tvBody, "tweetText");
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) myContext, p1);
                 myContext.startActivity(i, options.toBundle());
-                Toast.makeText(getContext(), "Come on", Toast.LENGTH_LONG).show();
+
             }
 
         });

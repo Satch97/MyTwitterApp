@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweets.Clients.TwitterClient;
 import com.codepath.apps.mysimpletweets.R;
@@ -26,42 +27,69 @@ public class ComposeActivity extends AppCompatActivity {
     private Tweet tweet;
     private TextView mTextView;
     private EditText mEditText ;
+    private Tweet replyTweet = null;
+    EditText etTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+        replyTweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
         client = TwitterApplication.getRestClient();
         mEditText = (EditText) findViewById(R.id.etTweet) ;
         mTextView = (TextView) findViewById(R.id.tvCount);
+        etTweet = (EditText) findViewById(R.id.etTweet);
         mEditText.addTextChangedListener(mTextEditorWatcher);
+
+        if (replyTweet!= null){
+            etTweet.setText(replyTweet.getUser().getScreenName());
+        }
 
 
     }
 
 
     public void onSubmitTweet(View view) {
-        EditText etTweet = (EditText) findViewById(R.id.etTweet);
         String status =  etTweet.getText().toString();
-        client.postNewTweet(status, new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("Success", response.toString());
-                tweet = new Tweet();
-                tweet = Tweet.fromJSON(response);
-                Intent data = new Intent();
-                // Pass relevant data back as a result
-                data.putExtra("tweet", Parcels.wrap(tweet));
-                setResult(RESULT_OK, data); // set result code and bundle data for response
-                finish();
+        if (replyTweet == null) {
+            client.postNewTweet(status, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    Log.d("Success", response.toString());
+                    tweet = new Tweet();
+                    tweet = Tweet.fromJSON(response);
+                    Intent data = new Intent();
+                    // Pass relevant data back as a result
+                    data.putExtra("tweet", Parcels.wrap(tweet));
+                    setResult(RESULT_OK, data); // set result code and bundle data for response
+                    finish();
 
-            }
+                }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("Success", errorResponse.toString());
-            }
-        });
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("Success", errorResponse.toString());
+                }
+            });
+        }
+        else if(replyTweet!= null){
+            client.postNewTweet(replyTweet.getUid(),status, new JsonHttpResponseHandler(){
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    Log.d("Success", response.toString());
+                    finish();
+
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("Success", errorResponse.toString());
+                    Toast.makeText(getApplicationContext(),"Reply was not posted",  Toast.LENGTH_SHORT);
+                    finish();
+;                }
+
+            });
+        }
 
     }
 
